@@ -75,7 +75,8 @@ export default function Sender({ socket }) {
       socket.off("webrtc-answer");
       socket.off("ice-candidate");
       socket.off("peer-disconnected");
-    };// eslint-disable-next-line react-hooks/exhaustive-deps
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [socket]);
 
   const startWebRTC = async () => {
