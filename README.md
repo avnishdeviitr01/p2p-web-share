@@ -1,70 +1,95 @@
-# Getting Started with Create React App
+# P2PShare — Direct Browser-to-Browser File Transfer
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A real-time peer-to-peer file sharing web app built with WebRTC, React.js, and Node.js + Socket.io. Files are transferred **directly between browsers** — no server storage involved.
 
-## Available Scripts
+## 🔗 Live Links
 
-In the project directory, you can run:
+- **Frontend:** [https://p2p-web-share-theta.vercel.app](https://p2p-web-share-theta.vercel.app)
+- **Backend:** [https://p2p-web-share-xfuf.onrender.com](https://p2p-web-share-xfuf.onrender.com)
+- **Demo Video:** [Watch Demo](https://drive.google.com/file/d/1VBftxXJWy-07y6NH3cfFvUSdp_ixDq9n/view?usp=drivesdk)
 
-### `npm start`
+## ✨ Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- 🖱️ Drag & drop file upload
+- 🔑 Unique Room ID generation for secure sharing
+- ⚡ Direct P2P transfer via WebRTC Data Channels
+- 🔐 SHA-256 chunk verification to prevent data corruption
+- 📊 Real-time progress bar (%, speed in MB/s, bytes transferred)
+- ⬇️ Auto-download on file receive
+- ⚠️ Graceful disconnect handling with UI notification
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🛠️ Tech Stack
 
-### `npm test`
+| Layer | Technology |
+|-------|-----------|
+| Frontend | React.js, CSS |
+| Backend | Node.js, Express, Socket.io |
+| P2P Transfer | WebRTC Data Channels |
+| Integrity Check | Web Crypto API (SHA-256) |
+| Frontend Deploy | Vercel |
+| Backend Deploy | Render |
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 🚀 Getting Started Locally
 
-### `npm run build`
+### Prerequisites
+- Node.js v18+
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 1. Clone the repo
+```bash
+git clone https://github.com/avnishdeviitr01/p2p-web-share.git
+cd p2p-web-share
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 2. Start the signaling server
+```bash
+cd server
+npm install
+node index.js
+```
+Server runs on `http://localhost:3001`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 3. Start the React frontend
+```bash
+cd client
+npm install
+npm start
+```
+Frontend runs on `http://localhost:3000`
 
-### `npm run eject`
+### 4. Test it
+1. Open two browser tabs at `http://localhost:3000`
+2. **Tab 1:** Select **Send** → Drop a file → Copy the Room ID
+3. **Tab 2:** Select **Receive** → Enter the Room ID → Click Join Room
+4. File transfers directly between browsers!
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 🔄 How It Works
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. **Sender** drops a file and gets a unique 6-character Room ID
+2. **Receiver** joins using the Room ID
+3. Both peers connect via **Socket.io signaling server** (SDP + ICE exchange)
+4. **WebRTC Data Channel** is established for direct P2P transfer
+5. File is split into **16KB chunks**, each verified with **SHA-256 hash**
+6. Receiver **auto-downloads** the file on completion
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## 📁 Project Structure
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```
+p2p-web-share/
+├── server/
+│   ├── index.js          # Socket.io signaling server
+│   └── package.json
+├── client/
+│   ├── public/
+│   └── src/
+│       ├── App.js         # Main app with socket connection
+│       ├── index.js
+│       ├── index.css
+│       └── components/
+│           ├── Sender.jsx    # File sender with WebRTC
+│           └── Receiver.jsx  # File receiver with WebRTC
+└── README.md
+```
 
-## Learn More
+## 👨‍💻 Author
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+**Avnish Kumar** — [GitHub](https://github.com/avnishdeviitr01)
