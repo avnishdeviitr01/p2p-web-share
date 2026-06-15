@@ -6,7 +6,7 @@ A real-time peer-to-peer file sharing web app built with WebRTC, React.js, and N
 
 - **Frontend:** [https://p2p-web-share-theta.vercel.app](https://p2p-web-share-theta.vercel.app)
 - **Backend:** [https://p2p-web-share-xfuf.onrender.com](https://p2p-web-share-xfuf.onrender.com)
-- **Demo Video:** [Watch Demo](https://drive.google.com/file/d/1VBftxXJWy-07y6NH3cfFvUSdp_ixDq9n/view?usp=drivesdk)
+- **Demo Video:** [Watch Demo](https://drive.google.com/file/d/1UchsI1QkiOW38moQzdunbPUI7PtgKxy_/view?usp=sharing)
 
 ## ✨ Features
 
