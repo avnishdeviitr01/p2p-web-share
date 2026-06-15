@@ -72,7 +72,7 @@ export default function Receiver({ socket }) {
                 totalBuffer.set(new Uint8Array(chunk), offset);
                 offset += chunk.byteLength;
               }
-              // eslint-disable-next-line react-hooks/exhaustive-deps
+              
               const info = fileInfoRef.current;
               const blob = new Blob([totalBuffer.buffer], {
                 type: info?.type || "application/octet-stream",
@@ -135,6 +135,7 @@ export default function Receiver({ socket }) {
       socket.off("room-joined"); socket.off("webrtc-offer");
       socket.off("ice-candidate"); socket.off("error"); socket.off("peer-disconnected");
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [socket]);
 
   const joinRoom = () => {
